@@ -23,7 +23,6 @@ import Category from "./Admin/category/Category";
 import CreateCateory from "./Admin/category/CreateCategory";
 import UpdateCategory from "./Admin/category/UpdateCategory";
 import NotFound from "./components/NotFound";
-// import CategoryPage from "./components/Example/CategoryPage";
 import ShowBanner from "./Admin/banners/ShowBanner";
 import CreateBanner from "./Admin/banners/CreateBanner";
 import UpdateBanner from "./Admin/banners/UpdateBanner";
