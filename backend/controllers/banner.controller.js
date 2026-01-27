@@ -15,6 +15,21 @@ const getAllBanners = async (req, res) => {
   }
 };
 
+const getAllPublicBanners = async (req, res) => {
+  try {
+    const banners = await Banner.find();
+    res.status(200).json({
+      success: true,
+      data: banners,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 const createBanner = async (req, res) => {
     try{
         const banners = await Banner.create({
@@ -120,4 +135,4 @@ const deleteBannerById = async (req , res) => {
     }
 }
 
-module.exports = { getAllBanners, createBanner, findBannerById, updateBannerById , deleteBannerById}
+module.exports = { getAllBanners, createBanner, findBannerById, updateBannerById , deleteBannerById ,getAllPublicBanners}

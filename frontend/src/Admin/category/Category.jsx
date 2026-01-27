@@ -9,6 +9,7 @@ import useDeleteCategory from "../../hooks/adminHook/adminCategory/useDeleteCate
 const Category = () => {
     const {categories ,loading , getAllPackage} = useCategory();
      const {deleteCategory , loading : isDeleting} = useDeleteCategory();
+     console.log('Fetch category' , categories)
   return (
     <div className="flex bg-gray-50 min-h-screen">
       <Sidebar />

@@ -6,9 +6,9 @@ import Loading from "../Loading";
 import useUpdateCategory from "../../hooks/adminHook/adminCategory/useUpdateCategory";
 
 const UpdateCategory = () => {
-  const { formData, setFormData, handleUpdateCategory, loading } =
+  const {categories , formData, setFormData, handleUpdateCategory, loading } =
     useUpdateCategory();
-
+console.log(categories)
   return (
     <div className="flex gap-2 bg-gray-50 min-h-screen">
       <Sidebar />

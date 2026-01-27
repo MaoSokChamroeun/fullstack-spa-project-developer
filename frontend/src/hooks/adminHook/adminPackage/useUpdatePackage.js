@@ -9,6 +9,7 @@ const useUpdatePackage = () => {
   const [formData, setFormData] = useState({
     package_name: "",
     price: "",
+    description : ""
   });
   
   const [image, setImage] = useState(null);
@@ -19,11 +20,17 @@ const useUpdatePackage = () => {
   useEffect(() => {
     const fetchPackage = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/package/${id}`);
+        const token = sessionStorage.getItem("token")
+        const res = await axios.get(`http://localhost:5000/api/package/${id}`,{
+          headers : {
+            Authorization : `Bearer ${token}`
+          }
+        });
         if (res.data.success) {
           setFormData({
             package_name: res.data.data.package_name,
             price: res.data.data.price,
+            description : res.data.data.description
           });
           // Set existing image as preview
           setPreview(`http://localhost:5000/public/packages/${res.data.data.image}`);
@@ -55,14 +62,19 @@ const handleUpdateSubmit = async (e) => {
   const data = new FormData();
   data.append("package_name", formData.package_name);
   data.append("price", formData.price);
+  data.append("description" , formData.description);
   
   if (image) {
     data.append("image", image);
   }
 
   try {
+    const token = sessionStorage.getItem("token")
     const res = await axios.put(`http://localhost:5000/api/package/${id}`, data, {
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: {
+         "Content-Type": "multipart/form-data",
+         Authorization : `Bearer ${token}`
+        },
     });
 
     console.log("Server Response:", res.data);

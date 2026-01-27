@@ -1,16 +1,20 @@
 const express = require('express')
-const {getAllPackage, createPackage, findPackageById , updatePackageById , deletePackage} = require('../controllers/package.controller');
+const {getAllPackage, createPackage, findPackageById , updatePackageById , deletePackage , getPublicPackage} = require('../controllers/package.controller');
 const {uploadPackageFile} = require('../controllers/upload.controller');
 
-const { restricGuard } = require('../guard/restric.guard');
+const { restricGuard  } = require('../guard/restric.guard');
+const {authGuard} = require('../guard/authGuard.guard')
 const PackageRouter = express.Router();
 
+PackageRouter.route('/public')
+            .get(getPublicPackage)
+
 PackageRouter.route('/')
-            .get( restricGuard("admin") , getAllPackage)
-            .post( restricGuard , uploadPackageFile ,createPackage)
+            .get(authGuard , restricGuard("admin") , getAllPackage)
+            .post(authGuard , restricGuard("admin") , uploadPackageFile ,createPackage)
 
 PackageRouter.route('/:id')
-            .get( restricGuard("admin") , findPackageById)
-            .delete( restricGuard("admin") ,deletePackage)
-            .put( restricGuard("admin") ,uploadPackageFile , updatePackageById)
+            .get(authGuard, restricGuard("admin") , findPackageById)
+            .delete(authGuard, restricGuard("admin") ,deletePackage)
+            .put(authGuard, restricGuard("admin") , uploadPackageFile , updatePackageById)
 module.exports = PackageRouter

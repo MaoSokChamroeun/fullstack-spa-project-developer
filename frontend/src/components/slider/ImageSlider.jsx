@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import useBanners from "../../hooks/adminHook/banner/getBanners";
+import useBannerFront from "../../hooks/frotendHook/useBannerFront";
+
 function ImageSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const { banners = [] } = useBanners();
+  const {bannerFront : banners} = useBannerFront();
   useEffect(() => {
     if (banners.length === 0) return;
 

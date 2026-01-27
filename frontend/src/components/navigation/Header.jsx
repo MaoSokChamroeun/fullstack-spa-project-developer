@@ -1,25 +1,28 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import useCategory from "../../hooks/adminHook/adminCategory/useCategory";
+// import useCategory from "../../hooks/adminHook/adminCategory/useCategory";
 import LanguageSwitcher from "../LanguageSwitcher";
+import category from '../../hooks/frotendHook/category'
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Spa Menu State
   const [isMenuMedia, setIsMenuMedia] = useState(false); // Media Dropdown State
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false); // Mobile Menu State
-  const {categories} = useCategory();
+  // const {categories} = useCategory();
+  const {categoriesFront} = category();
+  console.log('header category' , categoriesFront)
   const mediaMenus = ["Video", "Gallery"];
-  console.log("this all category" , categories)
+
 
   return (
     <header className="w-full relative z-[100] font-josefin top-0">
-      <div className="h-8 hidden md:flex px-4 justify-end items-center w-full bg-gray-100 text-black fixed z-10 p-6 top-0">
+       <div className="h-8 flex md:flex px-4 justify-end items-center w-full bg-gray-100 text-black fixed z-10 p-6 top-0">
         <div className="container mx-auto flex items-center justify-end gap-6 text-[12px] font-medium">
-          <span>+855 070542973</span>
-          <span className="uppercase tracking-wider">Phnom Penh, Cambodia</span>
+          <span className="lg:text-[15px] xl:text-[15px]">+855 070542973</span>
+          <span className="uppercase tracking-wider md:text-[10px] lg:text-[15px] xl:text-[15px]">Phnom Penh, Cambodia</span>
           <LanguageSwitcher />
         </div>
       </div>
-
+      
       {/* --- MAIN NAVBAR --- */}
       <nav className="w-full h-16  bg-gray-900 text-white px-6 fixed mt-12 top-0">
         <div className="container mx-auto h-full flex items-center justify-between">
@@ -67,7 +70,7 @@ const Header = () => {
               {isMenuOpen && (
                 <div className="absolute top-full left-0 pt-4 w-56">
                   <div className="bg-white text-gray-800 shadow-2xl py-2 border-t-2 border-[#aa9fc7]">
-                    {categories.map((item, i) => (
+                    {categoriesFront.map((item, i) => (
                       <Link
                         key={i}
                         to={item.path}
@@ -173,9 +176,16 @@ const Header = () => {
       </nav>
 
       {/* --- MOBILE DROPDOWN (Top-to-Bottom) --- */}
+      <div className="h-8 flex md:flex px-4 justify-end items-center w-full bg-gray-100 text-black fixed z-10 p-6 top-0">
+        <div className="container mx-auto flex items-center justify-end gap-6 text-[12px] font-medium">
+          <span className="text-[10px] md:text-[15px] lg:text-[15px] xl:text-[15px]">+855 070542973</span>
+          <span className="uppercase tracking-wider text-[10px] md:text-[15px] lg:text-[13px] xl:text-[13px] font-semibold">Phnom Penh, Cambodia</span>
+          <LanguageSwitcher />
+        </div>
+      </div>
       <div
         className={`
-        md:hidden fixed absolute top-16 left-0 w-full bg-[#2D2D2D] shadow-2xl overflow-hidden transition-all duration-500 ease-in-out z-50
+        md:hidden fixed absolute top-28 left-0 w-full bg-[#2D2D2D] shadow-2xl overflow-hidden transition-all duration-500 ease-in-out z-50
         ${isMobileNavOpen ? "max-h-[90vh] opacity-100" : "max-h-0 opacity-0"}
       `}
       >
@@ -220,7 +230,7 @@ const Header = () => {
               }`}
             >
               <ul className="pl-4 space-y-3 lowercase text-gray-300 border-l border-[#aa9fc7]">
-                {categories.map((item, i) => (
+                {categoriesFront.map((item, i) => (
                   <li key={i}>
                     <Link
                       to={item.path}

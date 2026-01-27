@@ -27,6 +27,33 @@ const getAllService = async (req, res) => {
   }
 };
 
+
+const getAllServicePublic = async (req, res) => {
+  try {
+    const { category } = req.query;
+    let query = {};
+    if (category) {
+      query.category = category;
+    }
+    const services = await Service.find(query).populate("category", "name path");
+    if (services.length === 0) {
+      return res.status(200).json({
+        success: true,
+        message: "No services found for this category",
+        data: []
+      });
+    }
+    res.status(200).json({
+      success: true,
+      data: services,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 const getServiceByCategory = async (req, res) => {
     try {
         const { slug } = req.params; 
@@ -50,36 +77,6 @@ const getServiceByCategory = async (req, res) => {
         res.status(500).json({ success: false, message: error.message });
     }
 };
-
-// const createServices = async (req, res) => {
-//   try {
-//     const { title, description, price , category , duration } = req.body;
-//     if (!title || !price || !description || !duration) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "title, description, price, and duration are required",
-//       });
-//     }
-//     const services = await Service.create({
-//       title: title,
-//       description: description,
-//       price: price,
-//       category,
-//       duration,
-//       image: req.file ? req.file.filename : null,
-//     });
-
-//     res.status(201).json({
-//       success: true,
-//       message: "Service create successfully",
-//       data: services,
-//     });
-//   } catch (error) {
-//     res.status(500).json({
-//       message: error.message,
-//     });
-//   }
-// };
 
 
 const createServices = async (req, res) => {
@@ -147,46 +144,6 @@ const getServiceById = async (req, res) => {
     });
   }
 };
-// const updateServiceById = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const { title, description, price , category , duration } = req.body
-//     const existingService = await Service.findById(id);
-//     if (!existingService) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "រកមិនឃើញសេវាកម្មដែលត្រូវកែប្រែឡើយ",
-//       });
-//     }
-//     const updateData = {
-//       title: title ,
-//       description: description,
-//       price: price ,
-//       category : category
-//       , duration : duration
-//     };
-//     if (req.file) {
-//       updateData.image = req.file.filename;
-//     }
-
-//     const updatedService = await Service.findByIdAndUpdate(
-//       id,
-//       { $set: updateData },
-//       { new: true, runValidators: true },
-//     );
-
-//     res.status(200).json({
-//       success: true,
-//       message: "កែប្រែសេវាកម្មបានជោគជ័យ",
-//       data: updatedService,
-//     });
-//   } catch (error) {
-//     res.status(500).json({
-//       success: false,
-//       message: error.message,
-//     });
-//   }
-// };
 
 const updateServiceById = async (req, res) => {
   try {
@@ -273,5 +230,6 @@ module.exports = {
   getServiceById,
   deleteServicesById,
   updateServiceById,
-  getServiceByCategory
+  getServiceByCategory,
+  getAllServicePublic
 };

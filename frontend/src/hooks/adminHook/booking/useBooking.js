@@ -8,7 +8,12 @@ const useBooking = () => {
     const getAllBooking = async () => {
         setLoading(true);
         try {
-            const res = await axios.get('http://localhost:5000/api/booking');
+            const token = sessionStorage.getItem("token")
+            const res = await axios.get('http://localhost:5000/api/booking',{
+                headers : {
+                    Authorization : `Bearer ${token}`
+                }
+            });
             if (res.data.success) {
                 setBooking(res.data.data);
             }

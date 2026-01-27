@@ -16,7 +16,12 @@ const useUpdateBanner = () => {
     const fetchBanners = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`http://localhost:5000/api/banner/${id}`);
+        const token = sessionStorage.getItem("token")
+        const res = await axios.get(`http://localhost:5000/api/banner/${id}`,{
+          headers : {
+            Authorization : `Bearer ${token}`
+          }
+        });
         if (res.data.success) {
           setLoading(false);
           const item = res.data.data;
@@ -47,9 +52,12 @@ const useUpdateBanner = () => {
     }
     try {
       setLoading(true);
+      const token = sessionStorage.getItem("token");
       const res = await axios.put(
         `http://localhost:5000/api/banner/${id}`,
-        data,
+        data,{
+          headers : `Bearer ${token}`
+        }
       );
       if (res.data.success) {
         setLoading(false);

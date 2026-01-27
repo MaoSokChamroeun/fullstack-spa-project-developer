@@ -1,14 +1,27 @@
-const express = require('express')
-const { getAllCategory, createCategory, findCategoryById, updateCategoryById, deleteCategoryById } = require('../controllers/category.controller');
-const { restricGuard } = require('../guard/restric.guard');
+const express = require("express");
+const {
+  getAllCategory,
+  createCategory,
+  findCategoryById,
+  updateCategoryById,
+  deleteCategoryById,
+  getPublicCategories,
+} = require("../controllers/category.controller");
+
+const { restricGuard } = require("../guard/restric.guard");
+const { authGuard } = require("../guard/authGuard.guard");
+
 const CategoryRouter = express.Router();
 
-CategoryRouter.route('/')
-    .get(restricGuard("admin"), getAllCategory)
-    .post(restricGuard("admin"), createCategory)
+CategoryRouter.route("/public").get(getPublicCategories);
 
-CategoryRouter.route('/:id')
-    .get(restricGuard("admin"), findCategoryById)
-    .put(restricGuard("admin"), updateCategoryById)
-    .delete(restricGuard("admin"), deleteCategoryById);
-module.exports = CategoryRouter
+CategoryRouter.route("/")
+  .get(authGuard, restricGuard("admin", "staff"), getAllCategory)
+  .post(authGuard, restricGuard("admin"), createCategory);
+
+CategoryRouter.route("/:id")
+  .get(authGuard, restricGuard("admin"), findCategoryById)
+  .put(authGuard, restricGuard("admin"), updateCategoryById)
+  .delete(authGuard, restricGuard("admin"), deleteCategoryById);
+
+module.exports = CategoryRouter;

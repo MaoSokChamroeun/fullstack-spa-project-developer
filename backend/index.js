@@ -54,12 +54,12 @@ app.use(
 // 5. Mount Routes
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/api/admin', AdminRouter);
-app.use('/api/package', authGuard, PackageRouter)
-app.use('/api/services', authGuard, ServiceRouter)
-app.use('/api/booking', authGuard, BookingRouter)
+app.use('/api/package', PackageRouter)
+app.use('/api/services', ServiceRouter)
+app.use('/api/booking', BookingRouter)
 app.use('/api/category', CategoryRouter)
-app.use('/api/services', authGuard, ServiceRouter)
-app.use('/api/banner', authGuard, BannerRouter)
+app.use('/api/services' , ServiceRouter)
+app.use('/api/banner', BannerRouter)
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

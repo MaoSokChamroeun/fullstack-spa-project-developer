@@ -60,10 +60,7 @@ const useCreateCategory = () => {
         setLoading(true);
 
         try {
-            // ១. ទាញយក Token ពី sessionStorage (ដែលយើងបានរក្សាទុកពេល Login)
             const token = sessionStorage.getItem("token");
-
-            // ២. បញ្ជូន Request ជាមួយ Header Authorization
             const res = await axios.post(
                 "http://localhost:5000/api/category", 
                 formData, 

@@ -68,8 +68,7 @@ import { useParams, useNavigate } from "react-router-dom";
 const useUpdateCategory = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  
-  // ១. កែ State ឱ្យនៅក្នុង Object តែមួយ
+
   const [formData, setFormData] = useState({ name: "", path: "" });
   const [loading, setLoading] = useState(false);
 
@@ -85,12 +84,13 @@ const useUpdateCategory = () => {
         });
 
         if (res.data.success) {
-          // ២. កែការ Update State តាម JSON structure (data ឬ result)
           const categoryData = res.data.data || res.data.result;
           setFormData({
             name: categoryData.name,
             path: categoryData.path
           });
+
+          console.log(res.data.success)
         }
       } catch (error) {
         console.error("Error fetching category:", error);

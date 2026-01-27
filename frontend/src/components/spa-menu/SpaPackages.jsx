@@ -12,7 +12,7 @@ const SpaPackages = ({ categorySlug }) => {
 
   
   const { servicesCategory = [] , loading } = useGetServiceCategory(categorySlug);
-
+console.log(servicesCategory)
   const activePage = contentMap[categorySlug] || {
     title: "Spa Services",
     image: "https://www.angkorspa.net/wp-content/uploads/2025/11/Oil-Massage-1890x760.png",

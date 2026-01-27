@@ -123,4 +123,26 @@ const deleteCategoryById = async(req , res) => {
     }
 }
 
-module.exports = {getAllCategory , createCategory , findCategoryById , updateCategoryById , deleteCategoryById}
+const getPublicCategories = async(req , res) => {
+    try{
+        const publics = await Category.find();
+        if(!publics){
+            return res.status(404).json({
+                success : false,
+                message : 'Category not found'
+            })
+        }
+
+        res.status(200).json({
+            success : true,
+            data : publics
+        })
+    }catch(error){
+        res.status(500).json({
+            success : false ,
+            message : error.message
+        })
+    }
+}
+
+module.exports = {getAllCategory , createCategory , findCategoryById , updateCategoryById , deleteCategoryById , getPublicCategories}

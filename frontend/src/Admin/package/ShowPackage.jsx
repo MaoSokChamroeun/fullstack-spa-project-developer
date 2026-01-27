@@ -45,6 +45,9 @@ const ShowPackage = () => {
                     <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                       Price
                     </th>
+                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      Description
+                    </th>
                     
                     <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">
                       Actions
@@ -80,8 +83,11 @@ const ShowPackage = () => {
                         <td className="px-6 py-4 text-sm font-medium text-gray-900">
                           {item.package_name}
                         </td>
-                        <td className="px-6 py-4 text-sm font-bold text-green-600">
+                        <td className="px-6 py-4 text-sm font-bold text-red-600">
                           ${item.price}
+                        </td>
+                        <td className="px-6 py-4 text-sm font-bold border-gray-200">
+                          {item.description}
                         </td>
                         <td className="px-6 py-4 text-center">
                           <div className="flex justify-center gap-3">

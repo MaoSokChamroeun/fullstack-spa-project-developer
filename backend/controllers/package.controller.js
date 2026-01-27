@@ -21,6 +21,26 @@ const getAllPackage = async(req , res) =>{
     }
 }
 
+const getPublicPackage = async(req , res) =>{
+    try{
+        const packages = await Package.find();
+        if(!packages){
+            return res.status(404).json({
+                success : false,
+                message : 'Package not found'
+            });
+        }
+        res.status(200).json({
+            success : true,
+            data : packages
+        })
+    }catch(error){
+        res.status(500).json({
+            message : error.message
+        })
+    }
+}
+
 const findPackageById = async(req ,res) => {
     try{
         const {id} = req.params
@@ -45,29 +65,30 @@ const findPackageById = async(req ,res) => {
 
 const createPackage = async (req, res) => {
     try {
-        const { package_name, price } = req.body;
+        const { package_name, price , description } = req.body;
         if (!package_name || !price) {
             return res.status(400).json({
                 success: false,
-                message: 'សូមបញ្ចូលឈ្មោះកញ្ចប់ និងតម្លៃ!'
+                message: 'package name , price are required'
             });
         }
         if (!req.file) {
             return res.status(400).json({
                 success: false,
-                message: 'សូមជ្រើសរើសរូបភាព!'
+                message: 'Choose your image!'
             });
         }
         // ៣. បង្កើត record ថ្មីក្នុង database
         const newPackage = await Package.create({
             package_name: package_name,
             price: price,
+            description : description,
             image: req.file ? req.file.filename : null
         });
 
         res.status(201).json({
             success: true,
-            message: 'បង្កើតកញ្ចប់ថ្មីបានជោគជ័យ',
+            message: 'Create successfully',
             data: newPackage
         });
     } catch (error) {
@@ -80,7 +101,7 @@ const createPackage = async (req, res) => {
 
 const updatePackageById = async(req ,res) => {
     try{
-        const {package_name , price} = req.body;
+        const {package_name , price , description} = req.body;
         const {id} = req.params;
 
         const exitPackage = await Packgae.findById(id);
@@ -92,7 +113,8 @@ const updatePackageById = async(req ,res) => {
         }
         const updateData = {
             package_name : package_name,
-            price : price
+            price : price,
+            description : description
         };
 
         if(req.file){
@@ -138,4 +160,4 @@ const deletePackage = async(req , res) => {
     }
 }
 
-module.exports = {getAllPackage , createPackage , findPackageById , deletePackage , updatePackageById}
+module.exports = {getAllPackage , createPackage , findPackageById , deletePackage , updatePackageById , getPublicPackage}

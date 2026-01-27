@@ -1,7 +1,9 @@
 import React from 'react';
 import procedure from '../data/prodecure';
 import { Link } from 'react-router-dom';
+// import useFrontPackage from '../hooks/frotendHook/useFrontPackage';
 const Procedures = () => {
+  // const {frontPackage} = useFrontPackage();
   return (
     <section className="bg-white py-24 px-6 font-josefin">
         <div className=' mx-auto text-center mb-10'>

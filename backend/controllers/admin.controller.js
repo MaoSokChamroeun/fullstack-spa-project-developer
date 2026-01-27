@@ -2,56 +2,6 @@ const AdminModel = require('../models/Admin.model')
 const { bcryptCompare, bcryptPashash } = require('../utils/bcrypt.util')
 const { createToken } = require('../utils/jwt.util')
 
-
-// const adminLogin = async (req, res) => {
-//   try {
-//     const { email, password } = req.body;
-
-//     // 1. Check admin
-//     const admin = await AdminModel.findOne({ email });
-//     if (!admin) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "Admin not found",
-//       });
-//     }
-
-//     // 2. Check password
-//     const isMatch = await bcryptCompare(password, admin.password);
-//     if (!isMatch) {
-//       return res.status(401).json({
-//         success: false,
-//         message: "Invalid credentials",
-//       });
-//     }
-
-//     // 3. Generate token
-//     const token = createToken({ adminId: admin._id });
-
-//     // FIX TYPOS HERE
-//     res.cookie('token', token, {
-//       secure: process.env.NODE_ENV === 'production', // Fixed NOE_ENV
-//       httpOnly: true,                                // Fixed httpOny
-//       maxAge: (process.env.COOKIE_EXPIRE || 1) * 24 * 60 * 60 * 1000, 
-//       sameSite: 'Strict'                             // Fixed samSite
-//     });
-
-//     // 4. Success response
-//     return res.status(200).json({
-//       success: true,
-//       message: "Login success",
-//       result: { token }
-//     });
-
-//   } catch (error) {
-//     console.error("Login error:", error.message);
-//     return res.status(500).json({
-//       success: false,
-//       message: "Server error",
-//       error: error.message // Added for easier debugging
-//     });
-//   }
-// };
 const adminLogin = async (req, res, next) => {
   try {
     const { email, password, username } = req.body;
