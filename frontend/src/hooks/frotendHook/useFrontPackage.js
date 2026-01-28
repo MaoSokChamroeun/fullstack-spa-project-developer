@@ -8,7 +8,7 @@ const useFrontPackage = () => {
   const fetchPublicPackage = async () => {
     try {
       const res = await axios.get(
-        "https://spa-frontend-blond.vercel.app/api/services/public"
+        "http://localhost:5000/api/services/public"
       );
 
       setFrontPackage(res.data.data);

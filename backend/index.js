@@ -29,8 +29,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(limiter)
 app.use(cors({
-    origin: true, 
-    credentials: true,
+    origin: 'http://localhost:5173', // Must match your Vite URL exactly
+    credentials: true,               // Allows cookies to be sent
 }));
 app.use(morgan("dev"))
 const db = require('./config/db');
