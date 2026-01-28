@@ -19,11 +19,11 @@ const createStorage = (folderName) => {
   });
 };
 const fileFilter = (req, file, cb) => {
-  const allowTypes = ["image/jpeg", "image/jpg", "image/png"];
+  const allowTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
   if (allowTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
-    cb(new Error("Only .jpg and .png are allowed!"), false);
+    cb(new Error("Only .jpg and .png .webp are allowed!"), false);
   }
 };
 

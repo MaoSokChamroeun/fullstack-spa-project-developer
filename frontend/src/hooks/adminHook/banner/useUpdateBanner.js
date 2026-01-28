@@ -56,7 +56,9 @@ const useUpdateBanner = () => {
       const res = await axios.put(
         `http://localhost:5000/api/banner/${id}`,
         data,{
-          headers : `Bearer ${token}`
+          headers : {
+            Authorization : `Bearer ${token}`
+          }
         }
       );
       if (res.data.success) {

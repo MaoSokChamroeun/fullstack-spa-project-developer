@@ -8,12 +8,12 @@ const bookingSchema = new mongoose.Schema({
     phone : {
         type : String
     },
-    service_id : {
+    service : {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'Service',
         required : true
     },
-    package_id : {
+    package : {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'Package',
         required : true
@@ -25,8 +25,11 @@ const bookingSchema = new mongoose.Schema({
             "pending",
             "complete"
         ]
+    },
+    description : {
+        type : String,
     }
-});
+},{timestamps : true});
 
 const Booking = mongoose.model('Booking' , bookingSchema);
 module.exports = Booking

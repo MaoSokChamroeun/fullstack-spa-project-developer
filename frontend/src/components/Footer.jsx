@@ -6,19 +6,15 @@ import { FaTiktok } from "react-icons/fa6";
 import { FaInstagramSquare } from "react-icons/fa";
 const Footer = () => {
   return (
-    <footer className="w-full mt-10 p-10">
+    <footer className="w-full mt-10 p-10 bg-gray-800 text-white">
       <div className="max-w-7xl mx-auto px-4">
-
-        {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-
-          {/* Left */}
-          <div >
-            <div className='rounded-full bg-blue-400 w-20 h-20'>
-              {/* <Link to={'/'}><img src={logo} alt="logo" width={80} className='rounded-2xl mb-10' /></Link> */}
-              <h1>Logo</h1>
-            </div>
-            <h1 className="text-2xl font-bold">Ninety Nine & Media</h1>
+          <div>
+            
+           <div className='w-[200px] text-center'>
+             <h1 className="text-2xl font-bold">Muthida</h1>
+            <span className='font-semibold'>Spa</span>
+           </div>
             <p className="mt-2">
               ទីតាំង នៅក្រោយផ្សាររំចែក អូឌឹម03 ផ្លូវជាតិលេខ4
             </p>
@@ -43,7 +39,7 @@ const Footer = () => {
             <p className="font-bold text-lg">Information</p>
 
             <ul className="mt-3 space-y-2">
-              <li className=''><Link to = {'/about'} className=" footer-color font-semibold text-decoration-none ">About Company</Link></li>
+              <li className=''><Link to = {'/about'} className=" footer-color font-semibold text-decoration-none ">Home</Link></li>
               <li><Link to={'/contact'} className="footer-color font-semibold text-decoration-none">Contact Us</Link></li>
             </ul>
           </div>
@@ -54,7 +50,7 @@ const Footer = () => {
 
             <div className="mt-3 space-y-2">
               <p className="font-semibold">088 238 89 85  / 098 330 880</p>
-              <p className="font-semibold">ninetynine99@gmail.com</p>
+              <p className="font-semibold">mothidatspa@gmail.com</p>
             </div>
           </div>
 
@@ -87,7 +83,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <p className="text-center text-gray-600 text-sm">
-            © 2025 Ninety Nine. All rights reserved.
+            © 2025 Mothida Spa. All rights reserved.
           </p>
         </div>
 

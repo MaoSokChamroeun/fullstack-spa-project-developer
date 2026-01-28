@@ -23,7 +23,7 @@ const Packages = () => {
         </div>
 
         <div className="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-5">
-          {services.slice(0, 6).map((item) => (
+          {services.slice(6, 12).map((item) => (
             <div
               key={item._id}
               className="w-full p-2 flex flex-col mx-auto mb-5"
@@ -32,7 +32,7 @@ const Packages = () => {
                 <img
                   src={`${httpUrl}/public/services/${item.image}`}
                   alt={item.title?.[lang] || item.title?.en}
-                  className="w-full h-[450px] object-cover"
+                  className="w-full h-[450px] object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </figure>
 

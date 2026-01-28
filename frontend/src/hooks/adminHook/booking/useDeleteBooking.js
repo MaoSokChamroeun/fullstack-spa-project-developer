@@ -12,12 +12,16 @@ const useDeleteBooking = () => {
 
     try {
       setLoading(true);
-      const res = await axios.delete(`http://localhost:5000/api/booking/${id}`);
+      const token = sessionStorage.getItem("token")
+      const res = await axios.delete(`http://localhost:5000/api/booking/${id}`,{
+        headers : {
+          Authorization : `Bearer ${token}`
+        }
+      });
 
-      // Check for your 'seccess' or 'success' key from backend
       if (res.data.seccess || res.data.success) {
         alert("Deleted successfully");
-        if (callback) callback(); // This re-runs getAllPackage in the component
+        if (callback) callback(); 
       }
     } catch (error) {
       console.error("Delete error", error);

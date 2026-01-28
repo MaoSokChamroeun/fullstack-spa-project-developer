@@ -29,7 +29,7 @@ console.log(servicesCategory)
           />
         </figure>
 
-        <div className="mt-10 max-w-7xl mx-auto px-4">
+        <div className="mt-10 max-w-7xl mx-auto">
           <h1 className="text-center text-[35px] font-extrabold uppercase tracking-wide">
             
             {activePage.title}
@@ -39,19 +39,19 @@ console.log(servicesCategory)
             {t('experience_msg')} {activePage.title}. {t('rejuvenate_msg')}
           </p>
 
-          <div className="max-w-7xl mx-auto p-6 space-y-6">
+          <div className="max-w-7xl mx-auto space-y-6">
             {loading && <Loading />}
             {!loading && servicesCategory?.data && servicesCategory.data.length > 0 ? (
               servicesCategory.data.map((item, index) => (
                 <div
                   key={item._id || item.id || index}
-                  className="grid grid-cols-1 md:grid-cols-3 h-auto md:h-[350px] gap-6 border border-gray-400 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                  className="w-[370px] mx-auto grid grid-cols-1 md:grid-cols-3 h-auto md:h-[350px] lg:w-full xl:w-full lg:mt-10 xl:mt-10 gap-6 border border-gray-400 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow "
                 >
                   <div className="md:col-span-1">
                     <img
                       src={`http://localhost:5000/public/services/${item.image}`}
                       alt={item.title?.[lang]}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover "
                     />
                   </div>
 

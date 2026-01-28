@@ -4,8 +4,8 @@ const getAllBooking = async (req, res) => {
   try {
     // Populate will only work if the models 'Service' and 'Package' are registered
     const booking = await Booking.find()
-      .populate("service_id", "title price")
-      .populate("package_id", "package_name price");
+      .populate("service", "title price duration")
+      .populate("package", "package_name");
 
     res.status(200).json({
       success: true,
@@ -19,8 +19,8 @@ const getAllBooking = async (req, res) => {
 
 const createBooking = async (req, res) => {
   try {
-    const { client_name, phone, service_id, package_id, status } = req.body;
-    if (!client_name || !phone || !service_id || !package_id || !status) {
+    const { client_name, phone, service, package, description, status } = req.body;
+    if (!client_name || !phone || !service || !package || !status) {
       return res.status(400).json({
         success: false,
         message: "The field are required",
@@ -30,8 +30,9 @@ const createBooking = async (req, res) => {
     const booking = await Booking.create({
       client_name: client_name,
       phone: phone,
-      service_id: service_id,
-      package_id: package_id,
+      service: service,
+      package: package,
+      description : description,
       status: status,
     });
 
@@ -50,8 +51,8 @@ const findBookingById = async (req, res) => {
   try {
     const { id } = req.params;
     const booking = await Booking.findById(id)
-      .populate("service_id", "price title")
-      .populate("package_id", "package_name price");
+      .populate("service", "price title")
+      .populate("package", "package_name price");
     if(!booking){
         return res.status(404).json({
             success : false,

@@ -145,7 +145,7 @@ const Header = () => {
           {/* Right Actions */}
           <div className="flex items-center gap-4">
             <button className="hidden sm:block bg-gray-100 text-[13px] hover:bg-[#000000] hover:text-white cursor-pointer text-black px-7 py-2.5 rounded-full font-semibold transition-all">
-              Book Now
+              <Link to={'/booking'}>Book Now</Link>
             </button>
 
             {/* Mobile Toggle */}

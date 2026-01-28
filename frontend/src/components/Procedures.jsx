@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Procedures = () => {
   // const {frontPackage} = useFrontPackage();
   return (
-    <section className="bg-white py-24 px-6 font-josefin">
+    <section className="bg-gray-800 text-white py-24 px-6 font-josefin">
         <div className=' mx-auto text-center mb-10'>
             <p className='font-extrabold text-[35px]'>Popular Procedures</p>
             <p className='text-center'>These procedures are the best and most loved by our customers.</p>
@@ -23,16 +23,16 @@ const Procedures = () => {
             </div>
 
             {/* 2. Content Card */}
-            <div className="bg-gray-800 -mt-32 pt-44 pb-12 px-8 rounded-sm text-center flex flex-col items-center w-full max-w-sm transition-shadow duration-300 group-hover:shadow-md">
-              <h3 className="text-white text-2xl font-bold mb-4 uppercase tracking-widest">
+            <div className="bg-gray-100 -mt-32 pt-44 pb-12 px-8 rounded-sm text-center flex flex-col items-center w-full max-w-sm transition-shadow duration-300 group-hover:shadow-md">
+              <h3 className="text-gray-800 text-2xl font-bold mb-4 uppercase ">
                 {service.title}
               </h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-8 h-24 md:h-20">
+              <p className="text-gray-700 text-sm leading-relaxed mb-8 h-24 md:h-20">
                 {service.description}
               </p>
               
               {/* Read More Button */}
-              <button className="cursor-pointer border border-white text-white px-10 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase hover:bg-[#aa9fc7] hover:text-white transition-all duration-300 active:scale-95">
+              <button className="cursor-pointer border border-gray-800 text-gray-900 px-10 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase hover:bg-gray-800 hover:text-white transition-all duration-300 active:scale-95">
                 <Link to = {service.path}>{service.label}</Link>
               </button>
             </div>

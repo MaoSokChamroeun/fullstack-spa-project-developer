@@ -7,8 +7,6 @@ const useFrontCategory = () => {
     const fetchCategoryFrontend = async () => {
   try {
     const res = await axios.get('http://localhost:5000/api/category/public');
-    
-
     setCategoriesFront(res.data.data || res.data.result || []);
   } catch (error) {
     console.log(error);

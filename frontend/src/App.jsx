@@ -28,6 +28,7 @@ import CreateBanner from "./Admin/banners/CreateBanner";
 import UpdateBanner from "./Admin/banners/UpdateBanner";
 import SpaPackages from "./components/spa-menu/SpaPackages";
 import {useLang} from './components/context/LanguageContext.jsx';
+import Booking from "./pages/Booking.jsx";
 function App() {
   const {lang} = useLang();
   const fontClass = lang === 'kh' ? 'font-kantumruy' : 'font-josefin';
@@ -40,6 +41,8 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/location" element={<Location />} />
             <Route path="/gallery" element={<Gallery />} />
+
+            <Route path="/booking" element = {<Booking />} />
             <Route path="/services/message-lotion-skin-jasmine" 
             element={<SpaPackages categorySlug="message-lotion-skin-jasmine" />}
             />
